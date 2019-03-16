@@ -44,60 +44,121 @@ public class Lab3C{
         };
         
         // Welcomes the user to the program
+        System.out.println("Welcome to the customer sorter!");
+        int userInput = 1;
 
         // Create a while loop for user input for the provided menue
+        while (userInput != 0){
 
             // Display the Menue
+            showMenu();
+
             //Ask the user to make a selection
+            System.out.print("\nEnter the number for the action you want: ");
+            userInput = input.nextInt();
             
-            // If user selects 1
+            switch(userInput){
 
-                // Ask the user for information
-                // Add information to the list
+                case 1: { // Add new entry
+                    
+                    // Ask the user for information
+                    // Add information to the list
+                    System.out.println("Case 1 selected");
+                    break;
 
-            // If user selects 2
+                } // End case 1
 
-                // Prompt the user for a last name
-                // Remove any matching custoemrs from the list
+                case 2: { // Remove entry
 
-            // If user selects 3
+                    // Prompt the user for a last name
+                    // Remove any matching custoemrs from the list
+                    System.out.println("Case 2 selected");
+                    break;
 
-                // Ask the user to select if they want the names sorted from 00000 - 99999
-                // If user selects 1
-                    // Print the information with names sorted from 00000 - 99999
-                // If user selects 2
-                    // Print the information with names sorted from 99999 - 00000
+                } // End case 2
 
-            // If user selects 4
+                case 3: { // Sort by zip code
 
-                // Ask the user to select if they want the states sorted from Al - Wy
-                // If user selects 1
-                    // Print the information with names sorted from Al - Wy
-                // If user selects 2
-                    // Print the information with names sorted from Wy - Al
+                    // Ask the user to select if they want the names sorted from 00000 - 99999
+                    // If user selects 1
+                        // Print the information with names sorted from 00000 - 99999
+                    // If user selects 2
+                        // Print the information with names sorted from 99999 - 00000
+                    System.out.println("Case 3 selected");
+                    break;
 
-            // If user selects 5
+                } // End case 3
 
-                // Ask the user to select if they want the names sorted from A-Z or Z-A
-                // If user selects 1
-                    // Print the information with names sorted from A-Z
-                // If user selects 2
-                    // Print the information with names sorted from Z-A
+                case 4: { // Sort by state
 
-            // If user selects 6
+                    System.out.println("Case 4 selected");
+                    // Ask the user to select if they want the states sorted from Al - Wy
+                    // If user selects 1
+                        // Print the information with names sorted from Al - Wy
+                    // If user selects 2
+                        // Print the information with names sorted from Wy - Al
+                    break;
 
-                // Print out a list of all the customers and their information
+                } // End case 4
 
-            // If user selects 7
+                case 5:{ // Search by name
 
-                // Break the loop
+                    System.out.println("Case 5 selected");
+                    
+                    // Ask the user for the name they want
+                    // 
+                    
+                    break;
 
-            // End of user choice if statements
+                } // End case 5
 
-        // End of menue while loop
+                case 6: { // Print customer list
+
+                    // Print out a list of all the customers and their information
+                    System.out.println("Case 6 selected");
+                    break;
+
+                } // End case 6
+
+                case 7: { // Quit the program
+
+                    // Break the loop
+                    System.out.println("Case 7 selected");
+                    userInput = 0;
+                    break;
+
+                } // End case 7
+
+                default: {
+
+                    System.out.println("Wrong input. Please try again");
+                    userInput = 1;
+                    break;
+
+                } // End default case
+
+            } // End switch statement
+            System.out.println("\n");
+
+        } // End of menue while loop
 
         // Say goodbye to the customer
+        input.close();
+        System.out.print("Thanks for using the program!");
 
     } // End main method
+
+    // Display the menu to the user
+    public static void showMenu(){
+
+        System.out.println("1. Add New Entry");
+        System.out.println("2. Remove Entry");
+        System.out.println("3. Sort by Zip Code");
+        System.out.println("4. Sort by State");
+        System.out.println("5. Sort by Name");
+        System.out.println("6. Print Customers");
+        System.out.println("7. Quit");
+
+    } // End showMenu method
 
 } // End Lab3C class
