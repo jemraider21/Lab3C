@@ -14,7 +14,7 @@ public class Customers{
     private String zipCode;
     private String phone;
 
-    // Constructor to initialize variables
+    // Constructor to initialize variables 
     public Customers(String name, String address, String city, String state, String zipCode, String phone){
 
         this.name = name;
