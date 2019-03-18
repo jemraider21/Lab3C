@@ -19,33 +19,20 @@ public class Lab3C{
 
         Scanner input = new Scanner(System.in);
         
-        // One version of the array
-        String [][] customerInfoA = {
-
-            {"Name",            "Ansel Carter",       "Darby Hamsandwich",    "Ally Gator",      "Amanda Huginkiss",    "Franken Stein"},
-            {"Address",         "8397 Zip Rd",        "147 LedStock Ave",     "34 Main St",      "1222 Mover Rd",       "190 Princeton Ct"},
-            {"City",            "Ellicott Chance",    "Bloomneld",            "Bloomneld",       "Tulsom",              "Briggon"},
-            {"State",           "MD",                 "NJ",                   "NJ",              "CA",                  "MI"},
-            {"Zip Code",        "21999",              "07001",                "07001",           "90001",               "48003"},
-            {"Phone Number",    "123-456-7890",       "890-123-4567",         "456-789-0123",    "345-678-9012",        "678-901-2345"}
-
-        };
-
-        // Second version of array
-        String [][] customerInfoB = {
-
-            {"Name",                 "Address",             "City",               "State",    "Zip Code",    "Phone Number"},
-            {"Ansel Carter",         "8397 Zip Rd",         "Ellicott Chance",    "MD",       "21999",       "123-456-7890"},
-            {"Darby Hamsandwich",    "147 LedStock Ave",    "Bloomneld",          "NJ",       "07001",       "890-123-4567"},
-            {"Ally Gator",           "34 Main St",          "Bloomneld",          "NJ",       "07001",       "456-789-0123"},
-            {"Amanda Huginkiss",     "1222 Mover Rd",       "Tulsom",             "CA",       "90001",       "345-678-9012"},
-            {"Franken Stein",        "190 Princeton Ct",    "Briggon",            "MI",       "48003",       "678-901-2345"},
-
-        };
-        
         // Welcomes the user to the program
         System.out.println("Welcome to the customer sorter!");
         int userInput = 1;
+
+        // Creating an array of Customer objects
+        Customers[] customers = {
+
+            new Customers("Ansel Carter",        "8397 Zip Rd",        "Ellicott Chance",   "MD",   "21999",   "123-456-7890"),
+            new Customers("Darby Hamsandwich",   "147 LedStock Ave",   "Bloomneld",         "NJ",   "07001",   "890-123-4567"),
+            new Customers("Ally Gator",          "34 Main St",         "Bloomneld",         "NJ",   "07001",   "456-789-0123"),
+            new Customers("Amanda Huginkiss",    "1222 Mover Rd",      "Tulsom",            "CA",   "90001",   "345-678-9012"),
+            new Customers("Franken Stein",       "190 Princeton Ct",   "Briggon",           "MI",   "48003",   "678-901-2345")
+
+        };
 
         // Create a while loop for user input for the provided menue
         while (userInput != 0){
