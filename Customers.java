@@ -110,4 +110,11 @@ public class Customers{
         
     } // End getPhone method
 
+    // Return a String containing the customer's information
+    @Override
+    public String toString(){
+
+        return String.format("%-18s %-18s %-18s %-8s %-8s %-8s", getName(), getAddress(), getCity(), getState(), getZipCode(), getPhone());
+    }
+
 } // End Customers class

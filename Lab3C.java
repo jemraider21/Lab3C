@@ -98,7 +98,7 @@ public class Lab3C{
 
                     // Print out a list of all the customers and their information
 
-                    System.out.println("Complete customers list: ");
+                    System.out.println("Complete customers list: \n");
                     list.stream().forEach(System.out::println);
                     
                     break;
