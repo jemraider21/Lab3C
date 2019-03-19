@@ -10,34 +10,42 @@
  *      7.) Quit
  */
 
-
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collector;
 
 public class Lab3C{
-
-    // Creating an array of Customer objects
-    private static Customers[] customers = {
-
-        new Customers("Ansel Carter",        "8397 Zip Rd",        "Ellicott Chance",   "MD",   "21999",   "123-456-7890"),
-        new Customers("Darby Hamsandwich",   "147 LedStock Ave",   "Bloomneld",         "NJ",   "07001",   "890-123-4567"),
-        new Customers("Ally Gator",          "34 Main St",         "Bloomneld",         "NJ",   "07001",   "456-789-0123"),
-        new Customers("Amanda Huginkiss",    "1222 Mover Rd",      "Tulsom",            "CA",   "90001",   "345-678-9012"),
-        new Customers("Franken Stein",       "190 Princeton Ct",   "Briggon",           "MI",   "48003",   "678-901-2345")
-
-    };
-
-    // Create a list of employee objects
-    private static List<Customers> list = Arrays.asList(customers);
     
     public static void main(String[] args){
 
         Scanner input = new Scanner(System.in);
+
+        // Creating an array of Customer objects
+        Customers[] customers = {
+
+            new Customers("Ansel Carter",        "8397 Zip Rd",        "Ellicott Chance",   "MD",   "21999",   "123-456-7890"),
+            new Customers("Darby Hamsandwich",   "147 LedStock Ave",   "Bloomneld",         "NJ",   "07001",   "890-123-4567"),
+            new Customers("Ally Gator",          "34 Main St",         "Bloomneld",         "NJ",   "07001",   "456-789-0123"),
+            new Customers("Amanda Huginkiss",    "1222 Mover Rd",      "Tulsom",            "CA",   "90001",   "345-678-9012"),
+            new Customers("Franken Stein",       "190 Princeton Ct",   "Briggon",           "MI",   "48003",   "678-901-2345")
+
+        };
+
+        // Create a list of employee objects
+        List<Customers> list = Arrays.asList(customers);
+
+        // Initializing variables for program use
+        int userInput = 1; // Used for selecting main menue options
+        int choice = 0; // Used to determine selection in a sub menue
+        int looper = 0; // Used to either break or continue a loop; 0 = continue, 1 = break
         
         // Welcomes the user to the program
         System.out.println("Welcome to the customer sorter!");
-        int userInput = 1;
 
         // Create a while loop for user input for the provided menue
         while (userInput != 0){
@@ -50,12 +58,13 @@ public class Lab3C{
             userInput = input.nextInt();
             input.nextLine();
             
-            switch(userInput){
+            switch(userInput){ 
 
                 case 1: { // Add new entry
                     
+                    // Get user information
                     System.out.println("Case 1 selected");
-                    addCustomer();
+
                     break;
 
                 } // End case 1
@@ -71,7 +80,10 @@ public class Lab3C{
                 case 3: { // Sort by zip code
 
                     System.out.println("Case 3 selected");
-                    sortZip();
+                    Function<Customers, String> byZip = Customers::getZipCode;
+                    Comparator<Customers> smallToLargeZip = Comparator.comparing(byZip);
+                    list.stream().sorted(smallToLargeZip).forEach(System.out::println);
+
                     break;
 
                 } // End case 3
@@ -79,7 +91,9 @@ public class Lab3C{
                 case 4: { // Sort by state
 
                     System.out.println("Case 4 selected");
-                    sortState();
+                    Function<Customers, String> byState = Customers::getState;
+                    Comparator<Customers> aToZ = Comparator.comparing(byState);
+                    list.stream().sorted(aToZ).forEach(System.out::println);
                     break;
 
                 } // End case 4
@@ -87,7 +101,9 @@ public class Lab3C{
                 case 5:{ // Search by name
 
                     System.out.println("Case 5 selected");
-                    searchName();
+                    Function<Customers, String> byName = Customers::getName;
+                    Comparator<Customers> aToZ = Comparator.comparing(byName);
+                    list.stream().sorted(aToZ).forEach(System.out::println);
                     break;
 
                 } // End case 5
@@ -150,7 +166,7 @@ public class Lab3C{
     } // End showMenu method
 
     // Add an entry to the list
-    public static void addCustomer(){
+    public static String[] addCustomer(List<Customers> list){
 
         Scanner input = new Scanner(System.in);
 
@@ -169,9 +185,11 @@ public class Lab3C{
         System.out.print("Enter the customer's phone number with dashes: ");
         String phone = input.nextLine();
 
-        // Add information to the list
-        Customers newCustomer = new Customers(name, address, city, state, zipCode, phone);
-        list.add(newCustomer);
+        input.close();
+
+        // Add information to an array
+        String[] info = {name, address, city, state, zipCode, phone};
+        return info;
 
     } // End addCustomer method
 
