@@ -10,7 +10,7 @@
  *      7.) Quit
  */
 
- // Importing classes
+// Importing classes
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.function.Function;
@@ -19,11 +19,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Lab3C{
-    
+
     public static void main(String[] args){
 
         // Creating objects
-        Scanner input = new Scanner(System.in);
+        Scanner input = Scanner(System.in);
         Customers[] customers = {
 
             new Customers("Ansel Carter",        "8397 Zip Rd",        "Ellicott Chance",   "MD",   "21999",   "123-456-7890"),
@@ -38,137 +38,98 @@ public class Lab3C{
         LinkedList<Customers> list = new LinkedList<>(Arrays.asList(customers));
 
         // Initializing variables for program use
-        int userInput = 1; // Used for selecting main menue options
-        
-        // Welcomes the user to the program
-        System.out.println("Welcome to the customer sorter!");
+        int userInput = 1; // Used for selecting main menu options
+        int looper = 0; // Used to loop through main menu; 0 = continue, 1 = break
+        String name, address, city, state, zipCode, phone; // Used for user input
 
-        // Create a while loop for user input for the provided menue
-        while (userInput != 0){
+        // Welcome the user to the program
 
-            // Display the Menue
-            showMenu();
+        // Loop trough main menu, asking user what they want and performing action
+        while (looper != 1){
 
-            //Ask the user to make a selection
-            System.out.print("\nEnter the number for the action you want: ");
-            userInput = input.nextInt();
-            input.nextLine();
-            
-            // Make selection based on user choice
-            switch(userInput){ 
+            // Display menu
+            userInput = showMenu();
 
-                // Add new entry
-                case 1: { 
-                    
-                    // Get user information
-                    System.out.println("Case 1 selected");
-                    String[] info = addCustomer();
-                    String name = info[0];
-                    String address = info[1];
-                    String city = info[2];
-                    String state = info[3];
-                    String zipCode = info[4];
-                    String phone = info[5];
-                    
-                    Customers newCustomer = new Customers(name,address,city,state,zipCode,phone);
+            // Make selection based on user input
+            switch(userInput){
 
-                    list.add(newCustomer);
+                // Add a new entry to the list, INCOMPLETE
 
-                    break;
+                // Remove an entry based on last name, INCOMPLETE
 
-                } // End case 1
+                // Sort list by zip code, COMPLETE
+                case 3: {
 
-                // Remove entry based on last name
-                case 2: { 
-
-                    // Ask the user for a last name
-                    System.out.println("Case 2 selected");
-                    String lastName = input.nextLine();
-
-                    break;
-
-                } // End case 2
-
-                // Sort by zip code
-                case 3: { 
-
-                    System.out.println("Case 3 selected");
                     Function<Customers, String> byZip = Customers::getZipCode;
                     Comparator<Customers> smallToLargeZip = Comparator.comparing(byZip);
                     list.stream().sorted(smallToLargeZip).forEach(System.out::println);
 
+                    looper = 0;
                     break;
 
                 } // End case 3
 
-                // Sort by state
+                // Sort list by state, COMPLETE
                 case 4: { 
 
-                    System.out.println("Case 4 selected");
                     Function<Customers, String> byState = Customers::getState;
                     Comparator<Customers> aToZ = Comparator.comparing(byState);
                     list.stream().sorted(aToZ).forEach(System.out::println);
+                    
+                    looper = 0;
                     break;
 
                 } // End case 4
 
-                // Search by name
-                case 5:{ 
+                // Search the list for a name, INCOMPLETE
 
-                    // Sort the list by last name
-
-                    Function<Customers, String> byName = Customers::getName;
-                    Comparator<Customers> aToZ = Comparator.comparing(byName);
-                    list.stream().sorted(aToZ).forEach(System.out::println);
-
-                    break;
-
-                } // End case 5
-
-                // Print customer list
+                // Print the list of all the customers and their information
+                // COMPLETE
                 case 6: { 
 
-                    // Print out a list of all the customers and their information
                     System.out.println("Complete customers list: \n");
                     list.stream().forEach(System.out::println);
                     
+                    looper = 0;
                     break;
 
                 } // End case 6
 
-                // Quit the program
+                // Exit the program, COMPLETE
                 case 7: { 
 
                     // Break the loop
-                    userInput = 0;
+                    looper = 1;
                     break;
 
                 } // End case 7
 
-                // Displays a wrong input error message
+                // Show error message for incorrect input
+                // COMPLETE
                 default: {
 
                     System.out.println("Wrong input. Please try again");
 
-                    userInput = 1;
+                    userInput = 0;
                     break;
 
                 } // End default case
 
             } // End switch statement
-            System.out.println("\n");
 
-        } // End of menue while loop
+        } // End while loop
 
         // Say goodbye to the customer
-        input.close();
         System.out.print("Thanks for using the program!");
 
     } // End main method
 
-    // Display the menu to the user
-    public static void showMenu(){
+    // Show the main menu and ask the user for their selection
+    public static int showMenu(){
 
+        Scanner input = new Scanner(System.in);
+
+        // Show the menu
         System.out.println("1. Add New Entry");
         System.out.println("2. Remove Entry");
         System.out.println("3. Sort by Zip Code");
@@ -177,34 +138,13 @@ public class Lab3C{
         System.out.println("6. Print Customers");
         System.out.println("7. Quit");
 
+        // Ask the user for input
+        System.out.print("\nEnter the number for the action you want: ");
+        int userInput = input.nextInt();
+
+        // Return the user input
+        return userInput;
+
     } // End showMenu method
-
-    // Add an entry to the list
-    public static String[] addCustomer(){
-
-        Scanner input = new Scanner(System.in);
-
-        // Ask the user for information
-        System.out.print("Enter the customer's name: ");
-        String name = input.nextLine();
-        System.out.print("Enter the customer's address: ");
-        String address = input.nextLine();
-        System.out.print("Enter the customer's city: ");
-        String city = input.nextLine();
-        System.out.print("Enter the customer's state initials: ");
-        String state = input.nextLine();
-        state = state.toUpperCase();
-        System.out.print("Enter the customer's zip code: ");
-        String zipCode = input.nextLine();
-        System.out.print("Enter the customer's phone number with dashes: ");
-        String phone = input.nextLine();
-
-        input.close();
-
-        // Add information to an array
-        String[] info = {name, address, city, state, zipCode, phone};
-        return info;
-
-    } // End addCustomer method
 
 } // End Lab3C class
