@@ -10,22 +10,20 @@
  *      7.) Quit
  */
 
+ // Importing classes
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.function.Function;
-import java.util.function.Predicate;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.stream.Collector;
 
 public class Lab3C{
     
     public static void main(String[] args){
 
+        // Creating objects
         Scanner input = new Scanner(System.in);
-
-        // Creating an array of Customer objects
         Customers[] customers = {
 
             new Customers("Ansel Carter",        "8397 Zip Rd",        "Ellicott Chance",   "MD",   "21999",   "123-456-7890"),
@@ -37,12 +35,10 @@ public class Lab3C{
         };
 
         // Create a list of employee objects
-        List<Customers> list = Arrays.asList(customers);
+        LinkedList<Customers> list = new LinkedList<>(Arrays.asList(customers));
 
         // Initializing variables for program use
         int userInput = 1; // Used for selecting main menue options
-        int choice = 0; // Used to determine selection in a sub menue
-        int looper = 0; // Used to either break or continue a loop; 0 = continue, 1 = break
         
         // Welcomes the user to the program
         System.out.println("Welcome to the customer sorter!");
@@ -58,26 +54,43 @@ public class Lab3C{
             userInput = input.nextInt();
             input.nextLine();
             
+            // Make selection based on user choice
             switch(userInput){ 
 
-                case 1: { // Add new entry
+                // Add new entry
+                case 1: { 
                     
                     // Get user information
                     System.out.println("Case 1 selected");
+                    String[] info = addCustomer();
+                    String name = info[0];
+                    String address = info[1];
+                    String city = info[2];
+                    String state = info[3];
+                    String zipCode = info[4];
+                    String phone = info[5];
+                    
+                    Customers newCustomer = new Customers(name,address,city,state,zipCode,phone);
+
+                    list.add(newCustomer);
 
                     break;
 
                 } // End case 1
 
-                case 2: { // Remove entry
+                // Remove entry based on last name
+                case 2: { 
 
+                    // Ask the user for a last name
                     System.out.println("Case 2 selected");
-                    removeCustomer();
+                    String lastName = input.nextLine();
+
                     break;
 
                 } // End case 2
 
-                case 3: { // Sort by zip code
+                // Sort by zip code
+                case 3: { 
 
                     System.out.println("Case 3 selected");
                     Function<Customers, String> byZip = Customers::getZipCode;
@@ -88,7 +101,8 @@ public class Lab3C{
 
                 } // End case 3
 
-                case 4: { // Sort by state
+                // Sort by state
+                case 4: { 
 
                     System.out.println("Case 4 selected");
                     Function<Customers, String> byState = Customers::getState;
@@ -98,22 +112,23 @@ public class Lab3C{
 
                 } // End case 4
 
-                case 5:{ // Search by name
+                // Search by name
+                case 5:{ 
 
-                    System.out.println("Case 5 selected");
+                    // Sort the list by last name
+
                     Function<Customers, String> byName = Customers::getName;
                     Comparator<Customers> aToZ = Comparator.comparing(byName);
                     list.stream().sorted(aToZ).forEach(System.out::println);
+
                     break;
 
                 } // End case 5
 
-                case 6: { // Print customer list
-
-                    System.out.println("Case 6 selected");
+                // Print customer list
+                case 6: { 
 
                     // Print out a list of all the customers and their information
-
                     System.out.println("Complete customers list: \n");
                     list.stream().forEach(System.out::println);
                     
@@ -121,17 +136,16 @@ public class Lab3C{
 
                 } // End case 6
 
-                case 7: { // Quit the program
-
-                    System.out.println("Case 7 selected");
+                // Quit the program
+                case 7: { 
 
                     // Break the loop
-                    
                     userInput = 0;
                     break;
 
                 } // End case 7
 
+                // Displays a wrong input error message
                 default: {
 
                     System.out.println("Wrong input. Please try again");
@@ -166,7 +180,7 @@ public class Lab3C{
     } // End showMenu method
 
     // Add an entry to the list
-    public static String[] addCustomer(List<Customers> list){
+    public static String[] addCustomer(){
 
         Scanner input = new Scanner(System.in);
 
@@ -192,43 +206,5 @@ public class Lab3C{
         return info;
 
     } // End addCustomer method
-
-    // Remove a customer from the list
-    public static void removeCustomer(){
-
-        // Prompt the user for a last name
-        // Remove any matching custoemrs from the list
-
-    } // End removeCustomer method
-
-    // Sort the list by zip code
-    public static void sortZip(){
-
-        // Ask the user to select if they want the names sorted from 00000 - 99999
-        // If user selects 1
-            // Print the information with names sorted from 00000 - 99999
-        // If user selects 2
-            // Print the information with names sorted from 99999 - 00000
-
-    } // End sortZip
-
-    // Sort the list by state 
-    public static void sortState(){
-
-        // Ask the user to select if they want the states sorted from Al - Wy
-        // If user selects 1
-            // Print the information with names sorted from Al - Wy
-        // If user selects 2
-            // Print the information with names sorted from Wy - Al
-
-    } // End sortState method
-
-    // Search the list for a customer's name, then display all information for them
-    public static void searchName(){
-
-        // Ask the user for the name they want
-        // Pull up the customer's information
-
-    } // End searchName
 
 } // End Lab3C class
