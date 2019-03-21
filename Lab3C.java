@@ -19,11 +19,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Lab3C{
-
     public static void main(String[] args){
 
         // Creating objects
-        Scanner input = Scanner(System.in);
         Customers[] customers = {
 
             new Customers("Ansel Carter",        "8397 Zip Rd",        "Ellicott Chance",   "MD",   "21999",   "123-456-7890"),
@@ -35,6 +33,7 @@ public class Lab3C{
         };
 
         // Create a list of employee objects
+        Scanner input = new Scanner(System.in);
         LinkedList<Customers> list = new LinkedList<>(Arrays.asList(customers));
 
         // Initializing variables for program use
@@ -54,6 +53,23 @@ public class Lab3C{
             switch(userInput){
 
                 // Add a new entry to the list, INCOMPLETE
+                case 1: {
+
+                    // Getting input from user
+                    System.out.print("Enter the customer's name: ");                        name = input.nextLine();
+                    System.out.print("Enter the customer's address: ");                     address = input.nextLine();
+                    System.out.print("Enter the customer's city: ");                        city = input.nextLine();
+                    System.out.print("Enter the customer's state initials: ");              state = input.nextLine();
+                    System.out.print("Enter the customer's zip code: ");                    zipCode = input.nextLine();
+                    System.out.print("Enter the customer's phone number with dashes: ");    phone = input.nextLine();
+
+                    // Add information into an object of Customers
+                    Customers newCustomer = new Customers(name, address, city, state, zipCode, phone);
+
+                    // Add object to the list
+                    list.add(newCustomer);
+
+                } // End case 1
 
                 // Remove an entry based on last name, INCOMPLETE
 
@@ -121,6 +137,7 @@ public class Lab3C{
 
         // Say goodbye to the customer
         System.out.print("Thanks for using the program!");
+        input.close();
 
     } // End main method
 
@@ -143,6 +160,7 @@ public class Lab3C{
         int userInput = input.nextInt();
 
         // Return the user input
+        input.close();
         return userInput;
 
     } // End showMenu method
