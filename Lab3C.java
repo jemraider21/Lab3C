@@ -46,13 +46,23 @@ public class Lab3C{
         // Loop trough main menu, asking user what they want and performing action
         while (looper != 1){
 
-            // Display menu
-            userInput = showMenu();
+            // Display menu and ask for user input
+            System.out.println("1. Add New Entry");
+            System.out.println("2. Remove Entry");
+            System.out.println("3. Sort by Zip Code");
+            System.out.println("4. Sort by State");
+            System.out.println("5. Sort by Name");
+            System.out.println("6. Print Customers");
+            System.out.println("7. Quit");
+
+            // Ask the user for input
+            System.out.print("\nEnter the number for the action you want: ");
+            userInput = Integer.parseInt(input.nextLine());
 
             // Make selection based on user input
             switch(userInput){
 
-                // Add a new entry to the list, INCOMPLETE
+                // Add a new entry to the list, COMPLETE
                 case 1: {
 
                     // Getting input from user
@@ -68,10 +78,22 @@ public class Lab3C{
 
                     // Add object to the list
                     list.add(newCustomer);
+                    break;
 
                 } // End case 1
 
                 // Remove an entry based on last name, INCOMPLETE
+                case 2: {
+
+                    // Ask for a last name
+                    System.out.print("Enter a last name you want to remove: "); name = input.nextLine();
+
+                    // Loop for the list for all occurrences of the last name
+                    list.stream();
+
+                    break;
+
+                } // End case 2
 
                 // Sort list by zip code, COMPLETE
                 case 3: {
@@ -140,29 +162,5 @@ public class Lab3C{
         input.close();
 
     } // End main method
-
-    // Show the main menu and ask the user for their selection
-    public static int showMenu(){
-
-        Scanner input = new Scanner(System.in);
-
-        // Show the menu
-        System.out.println("1. Add New Entry");
-        System.out.println("2. Remove Entry");
-        System.out.println("3. Sort by Zip Code");
-        System.out.println("4. Sort by State");
-        System.out.println("5. Sort by Name");
-        System.out.println("6. Print Customers");
-        System.out.println("7. Quit");
-
-        // Ask the user for input
-        System.out.print("\nEnter the number for the action you want: ");
-        int userInput = input.nextInt();
-
-        // Return the user input
-        input.close();
-        return userInput;
-
-    } // End showMenu method
 
 } // End Lab3C class
