@@ -54,7 +54,7 @@ public class Lab3C{
         // Initializing variables for program use
         int userInput = 1; // Used for selecting main menu options
         int looper = 0; // Used to loop through main menu; 0 = continue, 1 = break
-        String firstName, lastName, address, city, state, zipCode, phone; // Used for user input
+        String firstName, lastName, fullName, address, city, state, zipCode, phone; // Used for user input
 
         // Welcome the user to the program
 
@@ -66,7 +66,7 @@ public class Lab3C{
             System.out.println("2. Remove Entry");
             System.out.println("3. Sort by Zip Code");
             System.out.println("4. Sort by State");
-            System.out.println("5. Sort by Name");
+            System.out.println("5. Search by Name");
             System.out.println("6. Print Customers");
             System.out.println("7. Quit");
 
@@ -77,7 +77,8 @@ public class Lab3C{
             // Make selection based on user input
             switch(userInput){
 
-                // Add a new entry to the list, COMPLETE
+                // Add a new entry to the list
+                // COMPLETE
                 case 1: {
 
                     // Getting input from user
@@ -98,7 +99,8 @@ public class Lab3C{
 
                 } // End case 1
 
-                // Remove an entry based on last name, COMPLETE
+                // Remove an entry based on last name
+                // COMPLETE
                 case 2: {
 
                     // Ask for a last name
@@ -112,7 +114,8 @@ public class Lab3C{
 
                 } // End case 2
 
-                // Sort list by zip code, COMPLETE
+                // Sort list by zip code
+                // COMPLETE
                 case 3: {
 
                     Function<Customers, String> byZip = Customers::getZipCode;
@@ -124,7 +127,8 @@ public class Lab3C{
 
                 } // End case 3
 
-                // Sort list by state, COMPLETE
+                // Sort list by state
+                // COMPLETE
                 case 4: { 
 
                     Function<Customers, String> byState = Customers::getState;
@@ -136,7 +140,26 @@ public class Lab3C{
 
                 } // End case 4
 
-                // Search the list for a name, INCOMPLETE
+                // Search the list for a name
+                // INCOMPLETE
+                case 5: {
+
+                    // Ask the user for a name to search for
+                    System.out.print("Enter a name you want to search for: "); fullName = input.nextLine();
+                    final String finalFullName = fullName;
+                    
+                    // Check if the name exists in the list
+                    Predicate<Customers> checkForName = name -> (name.getName().toUpperCase().equals(finalFullName));
+                    System.out.println(
+
+                        list.stream()
+                            .filter(checkForName)
+                            .toString()
+                    );
+                    
+                    break;
+                    
+                } // End case 5
 
                 // Print the list of all the customers and their information
                 // COMPLETE
@@ -150,7 +173,8 @@ public class Lab3C{
 
                 } // End case 6
 
-                // Exit the program, COMPLETE
+                // Exit the program
+                // COMPLETE
                 case 7: { 
 
                     // Break the loop
