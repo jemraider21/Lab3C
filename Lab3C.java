@@ -17,6 +17,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -147,15 +148,13 @@ public class Lab3C{
                     // Ask the user for a name to search for
                     System.out.print("Enter a name you want to search for: "); fullName = input.nextLine();
                     final String finalFullName = fullName;
+                    System.out.println();
                     
                     // Check if the name exists in the list
-                    Predicate<Customers> checkForName = name -> (name.getName().toUpperCase().equals(finalFullName));
-                    System.out.println(
-
-                        list.stream()
-                            .filter(checkForName)
-                            .toString()
-                    );
+                    List<Customers> nameSearch = list.stream()
+                                                     .filter(p -> p.getName().equals(finalFullName))
+                                                     .collect(Collectors.toList());
+                    nameSearch.stream().forEach(System.out::println);
                     
                     break;
                     
