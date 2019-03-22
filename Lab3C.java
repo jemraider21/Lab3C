@@ -19,16 +19,13 @@
  */
 
 // Importing classes
-import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Lab3C{
     public static void main(String[] args){
@@ -87,7 +84,6 @@ public class Lab3C{
             switch(userInput){
 
                 // Add a new entry to the list
-                // COMPLETE
                 case 1: {
 
                     // Getting input from user
@@ -109,7 +105,6 @@ public class Lab3C{
                 } // End case 1
 
                 // Remove an entry based on last name
-                // COMPLETE
                 case 2: {
 
                     // Ask for a last name
@@ -124,7 +119,6 @@ public class Lab3C{
                 } // End case 2
 
                 // Sort list by zip code
-                // COMPLETE
                 case 3: {
 
                     Function<Customers, String> byZip = Customers::getZipCode;
@@ -137,7 +131,6 @@ public class Lab3C{
                 } // End case 3
 
                 // Sort list by state
-                // COMPLETE
                 case 4: { 
 
                     Function<Customers, String> byState = Customers::getState;
@@ -150,7 +143,6 @@ public class Lab3C{
                 } // End case 4
 
                 // Search the list for a name
-                // INCOMPLETE
                 case 5: {
 
                     // Ask the user for a name to search for
@@ -169,7 +161,6 @@ public class Lab3C{
                 } // End case 5
 
                 // Print the list of all the customers and their information
-                // COMPLETE
                 case 6: { 
 
                     System.out.println("Complete customers list: \n");
@@ -181,7 +172,6 @@ public class Lab3C{
                 } // End case 6
 
                 // Exit the program
-                // COMPLETE
                 case 7: { 
 
                     // Break the loop
@@ -191,7 +181,6 @@ public class Lab3C{
                 } // End case 7
 
                 // Show error message for incorrect input
-                // COMPLETE
                 default: {
 
                     System.out.println("Wrong input. Please try again");
