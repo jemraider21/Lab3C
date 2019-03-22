@@ -7,7 +7,9 @@
 public class Customers{
 
     // Create private variables
-    private String name;
+    private String firstName;
+    private String lastName;
+    private String fullName; // Contains first and last name (ex: "Jard Morris")
     private String address;
     private String city;
     private String state;
@@ -15,9 +17,11 @@ public class Customers{
     private String phone;
 
     // Constructor to initialize variables 
-    public Customers(String name, String address, String city, String state, String zipCode, String phone){
+    public Customers(String firstName, String lastName, String address, String city, String state, String zipCode, String phone){
 
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        setName(firstName, lastName);
         this.address = address;
         this.city = city;
         this.state = state;
@@ -26,17 +30,31 @@ public class Customers{
 
     } // End Customer constructor
 
-    // Add customer name
-    public void setName(String name){
+    // Add customer's full name
+    public void setName(String firstName, String lastName){
 
-        this.name = name;
+        fullName = firstName + " " +lastName;
 
     } // End setName method
 
-    // Get the customer's name
+    // Get customer's first name
+    public String getFirstName(){
+
+        return firstName;
+
+    } // End getFirstName method
+
+    // Get customer's last name
+    public String getLastName(){
+
+        return lastName;
+
+    } // End getLastName method
+
+    // Get the customer's full name
     public String getName(){
 
-        return name;
+        return fullName;
 
     } // End getName method
 

@@ -12,8 +12,11 @@
 
 // Importing classes
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -24,22 +27,34 @@ public class Lab3C{
         // Creating objects
         Customers[] customers = {
 
-            new Customers("Ansel Carter",        "8397 Zip Rd",        "Ellicott Chance",   "MD",   "21999",   "123-456-7890"),
-            new Customers("Darby Hamsandwich",   "147 LedStock Ave",   "Bloomneld",         "NJ",   "07001",   "890-123-4567"),
-            new Customers("Ally Gator",          "34 Main St",         "Bloomneld",         "NJ",   "07001",   "456-789-0123"),
-            new Customers("Amanda Huginkiss",    "1222 Mover Rd",      "Tulsom",            "CA",   "90001",   "345-678-9012"),
-            new Customers("Franken Stein",       "190 Princeton Ct",   "Briggon",           "MI",   "48003",   "678-901-2345")
+            new Customers("Ansel",   "Carter",        "8397 Zip Rd",        "Ellicott Chance",   "MD",   "21999",   "123-456-7890"),
+            new Customers("Darby",   "Hamsandwich",   "147 LedStock Ave",   "Bloomneld",         "NJ",   "07001",   "890-123-4567"),
+            new Customers("Ally",    "Gator",          "34 Main St",         "Bloomneld",         "NJ",   "07001",   "456-789-0123"),
+            new Customers("Amanda",  "Huginkiss",    "1222 Mover Rd",      "Tulsom",            "CA",   "90001",   "345-678-9012"),
+            new Customers("Franken", "Stein",       "190 Princeton Ct",   "Briggon",           "MI",   "48003",   "678-901-2345")
 
         };
 
         // Create a list of employee objects
         Scanner input = new Scanner(System.in);
-        LinkedList<Customers> list = new LinkedList<>(Arrays.asList(customers));
+
+        // Making the list an array list
+        List<Customers> list = new ArrayList<Customers>();
+        for(Customers person : customers){
+
+            list.add(person);
+
+        } // End for loop
+
+        // Original version of list construction
+        //LinkedList<Customers> list = new LinkedList<>(Arrays.asList(customers));
+
+        Iterator<Customers> iterator = list.listIterator();
 
         // Initializing variables for program use
         int userInput = 1; // Used for selecting main menu options
         int looper = 0; // Used to loop through main menu; 0 = continue, 1 = break
-        String name, address, city, state, zipCode, phone; // Used for user input
+        String firstName, lastName, address, city, state, zipCode, phone; // Used for user input
 
         // Welcome the user to the program
 
@@ -66,7 +81,8 @@ public class Lab3C{
                 case 1: {
 
                     // Getting input from user
-                    System.out.print("Enter the customer's name: ");                        name = input.nextLine();
+                    System.out.print("Enter the customer's first name: ");                  firstName= input.nextLine();
+                    System.out.print("Enter the customer's last name: ");                   lastName = input.nextLine();
                     System.out.print("Enter the customer's address: ");                     address = input.nextLine();
                     System.out.print("Enter the customer's city: ");                        city = input.nextLine();
                     System.out.print("Enter the customer's state initials: ");              state = input.nextLine();
@@ -74,7 +90,7 @@ public class Lab3C{
                     System.out.print("Enter the customer's phone number with dashes: ");    phone = input.nextLine();
 
                     // Add information into an object of Customers
-                    Customers newCustomer = new Customers(name, address, city, state, zipCode, phone);
+                    Customers newCustomer = new Customers(firstName, lastName, address, city, state, zipCode, phone);
 
                     // Add object to the list
                     list.add(newCustomer);
@@ -82,14 +98,15 @@ public class Lab3C{
 
                 } // End case 1
 
-                // Remove an entry based on last name, INCOMPLETE
+                // Remove an entry based on last name, COMPLETE
                 case 2: {
 
                     // Ask for a last name
-                    System.out.print("Enter a last name you want to remove: "); name = input.nextLine();
+                    System.out.print("Enter a last name you want to remove: "); lastName = input.nextLine();
+                    final String finalLastName = lastName;
 
-                    // Loop for the list for all occurrences of the last name
-                    list.stream();
+                    // Loop through list to remove elements with last name
+                    list.removeIf(name -> name.getLastName().equals(finalLastName));
 
                     break;
 
@@ -154,6 +171,7 @@ public class Lab3C{
                 } // End default case
 
             } // End switch statement
+            System.out.println();
 
         } // End while loop
 
