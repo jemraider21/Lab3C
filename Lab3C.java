@@ -1,6 +1,10 @@
 /**
- * HCC Honey Inc wants to begin collecting names for a monthly mailing list. I am tasked with creating a program to process the information
- * There will be a menue that asks the user what they want to do:
+ *  Author: Jared Morris
+ *  Course: CMSY-167-002 Java II
+ *  Program: Lab3C
+ *  
+ *  HCC Honey Inc wants to begin collecting names for a monthly mailing list. I am tasked with creating a program to process the information
+ *  There will be a menue that asks the user what they want to do:
  *      1.) Add New Entry: Prompts the user for customer information and add it to the customer list
  *      2.) Remove Entry: Prompts the user for a last name, then removes any matching customers from the list
  *      3.) Sort by Zip Code
@@ -8,6 +12,10 @@
  *      5.) Search by Name
  *      6.) Print Customers
  *      7.) Quit
+ * 
+ *  Customer will make a selection based on the menu and proceed with the program
+ *  Whenever the customer is ready, they may quit the program
+ * 
  */
 
 // Importing classes
